@@ -1,0 +1,293 @@
+
+################################################################
+## Packages / RFLink
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'rflink'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## RFLink
+    ################################################
+
+    # switch.pir01:
+    #   <<: *customize
+    #   assumed_state: false
+    #   hidden: true
+    #   emulated_hue: false
+
+    # switch.pir02:
+    #   <<: *customize
+    #   assumed_state: false
+    #   hidden: true
+    #   emulated_hue: false
+
+    # switch.window_switch_office_open:
+    #   <<: *customize
+    #   assumed_state: false
+    #   initial_state: off
+    #   hidden: true
+    #   emulated_hue: false
+
+    # switch.window_switch_balcony_open:
+    #   <<: *customize
+    #   assumed_state: false
+    #   initial_state: off
+    #   hidden: true
+    #   emulated_hue: false
+
+    # switch.window_switch_office_close:
+    #   <<: *customize
+    #   assumed_state: false
+    #   initial_state: off
+    #   hidden: true
+    #   emulated_hue: false
+
+    # switch.window_switch_balcony_close:
+    #   <<: *customize
+    #   assumed_state: false
+    #   initial_state: off
+    #   hidden: true
+    #   emulated_hue: false
+
+    switch.light_livingroom_front:
+      <<: *customize
+      friendly_name: "Livingroom Front Plug"
+      assumed_state: false
+      initial_state: off
+      emulated_hue: false
+      icon: mdi:power-plug      
+
+    switch.light_livingroom_back:
+      <<: *customize
+      friendly_name: "Livingroom Back Plug"
+      assumed_state: false
+      initial_state: off
+      emulated_hue: false
+      icon: mdi:power-plug      
+
+    switch.rfswitch_white_03:
+      <<: *customize
+      assumed_state: false
+      initial_state: off
+      emulated_hue: false
+
+
+################################################
+## RFLink
+################################################
+
+rflink:
+  port: /dev/ttyACM0
+  wait_for_ack: false
+  ignore_devices:
+    - cresta*
+    - auriolv2*
+    - inovalley*
+    - elrodb*
+    - fineoffset*
+    - mertik*
+    - keeloq*
+    - alectov*
+    - oregon*
+    - rflink*
+    - xiron*
+    - tunex*
+    - renkforcee*
+    - tunex*
+
+# ################################################
+# ## Grouping RF Link Devices
+# ################################################
+# group:
+#   livingroom_lights:
+#     name: Livingroom Light
+#     icon: mdi:lightbulb
+#     view: no
+#     entities:
+#       - switch.livingroom_front
+#       - switch.livingroom_back
+
+################################################
+## RFLink Switches Door and Motion Sensors 
+################################################
+switch:
+  - platform: rflink
+    device_defaults:
+      fire_event: true
+      signal_repetitions: 2
+    devices:
+      AB400D_60_1:
+        name: light_livingroom_front
+      AB400D_60_2:
+        name: light_livingroom_back
+      AB400D_60_3:
+        name: rfswitch_white_03
+      # eurodomest_08d25e_02:
+      #   name: pir01
+      # eurodomest_08285b_02:
+      #   name: pir02
+      # eurodomest_2b9765_01:
+      #   name: window_switch_office_open
+      # eurodomest_2b9765_00:
+      #   name: window_switch_office_close
+      # eurodomest_2c0965_01:
+      #   name: window_switch_balcony_open
+      # eurodomest_2c0965_00:
+      #   name: window_switch_balcony_close
+
+
+################################################
+## RFLink Binary Sensors we publish
+################################################
+# binary_sensor:
+#   - platform: template
+#     sensors:
+#       motion01:
+#         friendly_name: Motion Sensor 01
+#         value_template: "{{ states.switch.pir01.state == 'off' }}"
+#         device_class: motion
+
+#   - platform: template
+#     sensors:
+#       motion02:
+#         friendly_name: Motion Sensor 02
+#         value_template: "{{ states.switch.pir02.state == 'off' }}"
+#         device_class: motion
+
+#   - platform: template
+#     sensors:
+#       office_window:
+#         friendly_name: Office Window
+#         value_template: "{{ states.switch.window_switch_office_open.state == 'on' }}"
+#         device_class: opening
+
+#   - platform: template
+#     sensors:
+#       balcony_door:
+#         friendly_name: Balcony Door
+#         value_template: "{{ states.switch.window_switch_balcony_open.state == 'on' }}"
+#         device_class: opening
+
+
+################################################
+## Automation to handle the "virtual" sensors
+################################################
+# automation:
+
+# ### Reset Motion and Window Sensors at startup
+# - id: rflink_startup
+#   alias: Home Assistant Startup
+#   hide_entity: true
+#   trigger:
+#     platform: homeassistant
+#     event: start
+#   action:
+#     - service: homeassistant.turn_on
+#       entity_id: 
+#         - switch.pir01
+#         - switch.pir02
+
+
+# ### Automation to reset the Motion Sensor 1 after 30 seconds
+# - id: reset_pir_01
+#   alias: Reset Motion Sensor 01
+#   hide_entity: true
+#   trigger:
+#     platform: state
+#     entity_id: switch.pir01
+#     to: 'off'
+#     for:
+#       seconds: 30
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: switch.pir01
+
+# ### Automation to reset the Motion Sensor 2 after 30 seconds
+# - id: reset_pir_02
+#   alias: Reset Motion Sensor 02
+#   hide_entity: true
+#   trigger:
+#     platform: state
+#     entity_id: switch.pir02
+#     to: 'off'
+#     for:
+#       seconds: 30
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: switch.pir02
+
+# ### Office Window actions
+# ### we need to set back the switch trough automation 
+# - id: office_window_open
+#   alias: Set Office Window to Open
+#   hide_entity: true
+#   trigger:
+#     platform: state
+#     entity_id: switch.window_switch_office_open
+#     to: 'on'
+#   action:
+#     service: homeassistant.toggle
+#     entity_id: switch.window_switch_office_close
+
+# - id: office_window_closed
+#   alias: Set Office Window to Close
+#   hide_entity: true
+#   trigger:
+#     platform: state
+#     entity_id: switch.window_switch_office_close
+#     to: 'off'
+#   action:
+#     service: homeassistant.toggle
+#     entity_id: switch.window_switch_office_open
+
+# ### Balcony Door actions
+# ### we need to set back the switch trough automation 
+# - id: balcony_door_open
+#   alias: Set Balcony Door to Open
+#   hide_entity: true
+#   trigger:
+#     platform: state
+#     entity_id: switch.window_switch_balcony_open
+#     to: 'on'
+#   action:
+#     service: homeassistant.turn_on
+#     entity_id: switch.window_switch_balcony_close
+
+# - id: balcony_door_closed
+#   alias: Set Balcony Door to Close
+#   hide_entity: true
+#   trigger:
+#     platform: state
+#     entity_id: switch.window_switch_balcony_close
+#     to: 'off'
+#   action:
+#     service: homeassistant.turn_off
+#     entity_id: switch.window_switch_balcony_open
+
+
+################################################
+## Logging during Debug Phase
+################################################
+logger:
+  default: error
+  logs:
+    homeassistant.components.rflink: debug
+    # rflink: debug
+    

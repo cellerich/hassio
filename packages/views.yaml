@@ -1,0 +1,96 @@
+################################################################
+## Packages / Views
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'views'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.weather:
+      <<: *customize
+      friendly_name: "Weather"
+      icon: mdi:weather-partlycloudy
+
+    group.lightgroup:
+      <<: *customize
+      friendly_name: "Lights"
+      icon: mdi:lightbulb
+
+    group.mediagroup:
+      <<: *customize
+      friendly_name: "Mediaplayer"
+      icon: mdi:radio
+
+    group.tesla:
+      <<: *customize
+      friendly_name: "Tesla"
+      icon: mdi:car-sports
+
+################################################
+## Group
+################################################
+
+group:
+  weather:
+    view: yes
+    entities:
+      - group.weather_general
+      - group.weather_wunderground
+      - group.weekly_forecast
+      - group.weather_overview
+
+  lightgroup:
+    view: yes
+    entities:
+      - group.dining_room_lights
+      - group.studio_lights
+      - group.living_room_lights
+      - group.bed_room_lights
+      - group.guest_room_lights
+      - group.office_lights
+      - group.entrance_lights
+      - group.kitchen_devices
+
+  mediagroup:
+    view: yes
+    entities:
+      - media_player.wohnzimmer
+      - media_player.esszimmer
+
+  tesla:
+    view: yes
+    entities:
+      - binary_sensor.tesla_model_s_5yjsa7h20ffp68799_charger_sensor
+      - binary_sensor.tesla_model_s_5yjsa7h20ffp68799_parking_sensor
+      - climate.tesla_model_s_5yjsa7h20ffp68799_hvac_climate_system
+      - device_tracker.tesla_model_s_5yjsa7h20ffp68799_location_tracker
+      - lock.tesla_model_s_5yjsa7h20ffp68799_door_lock
+      - sensor.tesla_model_s_5yjsa7h20ffp68799_battery_sensor
+      - sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_inside
+      - sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_outside
+
+
+  house:
+    view: no
+    entities:
+      - group.lightgroup
+      - group.mediagroup

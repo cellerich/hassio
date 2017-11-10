@@ -1,0 +1,121 @@
+################################################################
+## Packages / Sonoff
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'sonoff'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Automation
+    ################################################
+
+    # automation.harmony_activity_changed:
+    #   <<: *customize
+    #   friendly_name: "Harmony Activity Changed"
+
+    # automation.toggle_apple_tv:
+    #   <<: *customize
+    #   friendly_name: "Toggle Apple TV"
+
+    # automation.toggle_xbox:
+    #   <<: *customize
+    #   friendly_name: "Toggle Xbox"
+
+    ################################################
+    ## Lights
+    ################################################
+
+    light.sonoff_led_studio:
+      <<: *customize
+      friendly_name: "Studio LED Strip"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.sonoff_led_office:
+      <<: *customize
+      friendly_name: "Office LED Strip"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.sonoff_switch_diningroom:
+      <<: *customize
+      friendly_name: "Dining Room Sonoff Switch"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.sonoff_switch_bedroom_cello:
+      <<: *customize
+      friendly_name: "Bedroom Sonoff Switch Cello"
+      hidden: false
+      icon: mdi:lightbulb
+
+
+
+
+################################################
+## Automation
+################################################
+
+
+################################################
+## Lights
+################################################
+
+light:
+
+  # SONOFF LED Strip Studio
+  - platform: mqtt
+    name: "sonoff_led_studio"
+    command_topic: "fcmation/og/office/led"
+    state_topic: "fcmation/og/office/led/stat"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false   
+
+  # SONOFF LED Strip Office
+  - platform: mqtt
+    name: "sonoff_led_office"
+    command_topic: "fcmation/og/gallery/led"
+    state_topic: "fcmation/og/gallery/led/stat"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false     
+
+  # SONOFF Switch Bedroom Cello
+  - platform: mqtt
+    name: "sonoff_switch_bedroom_cello"
+    state_topic: "stat/egbdc/LIGHT"
+    command_topic: "cmnd/egbdc/light"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+
+  # SONOFF Switch Living Room
+  - platform: mqtt
+    name: "sonoff_switch_diningroom"
+    state_topic: "stat/eglrl/LIGHT"
+    command_topic: "cmnd/eglrl/light"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+

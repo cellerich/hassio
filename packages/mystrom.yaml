@@ -1,0 +1,50 @@
+
+################################################################
+## Packages / myStrom
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'mystrom'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## My Strom
+    ################################################
+
+    switch.mystrom_01:
+      <<: *customize
+      friendly_name: "Studio Plug"
+      icon: mdi:power-plug      
+
+    switch.mystrom_02:
+      <<: *customize
+      friendly_name: "Coffe Machine"
+      icon: mdi:coffee      
+
+
+################################################
+## MyStrom
+################################################
+
+switch:
+  - platform: mystrom
+    name: mystrom_01
+    host: !secret mystrom_01_url
+  - platform: mystrom
+    name: mystrom_02
+    host: !secret mystrom_02_url    

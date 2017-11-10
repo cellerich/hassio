@@ -1,0 +1,294 @@
+
+################################################################
+## Packages / MQTT Alexa
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'mqttalexa'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+
+automation:
+################################################
+## Alexa Light Commands
+################################################
+
+## Livingroom
+################################################
+- id: alexa_livingroom_light_on
+  alias: Alexa Livingroom On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/livingroom/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.living_room_lights
+
+- id: alexa_livingroom_light_off
+  alias: Alexa Livingroom Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/livingroom/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.living_room_lights
+
+## Diningroom
+################################################
+- id: alexa_diningroom_light_on
+  alias: Alexa Diningroom On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/diningroom/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.dining_room_lights
+
+- id: alexa_diningroom_light_off
+  alias: Alexa Diningroom Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/diningroom/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.dining_room_lights
+
+## Bedroom
+################################################
+- id: alexa_bedroom_light_on
+  alias: Alexa Bedroom On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/bedroom/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.bed_room_lights
+
+- id: alexa_bedroom_light_off
+  alias: Alexa Bedroom Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/bedroom/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.bed_room_lights
+
+## Guestroom
+################################################
+- id: alexa_guestroom_light_on
+  alias: Alexa Guestroom On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/guestroom/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.guest_room_lights
+
+- id: alexa_guestroom_light_off
+  alias: Alexa Guestroom Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/eg/guestroom/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.guest_room_lights
+
+## Office
+################################################
+- id: alexa_office_light_on
+  alias: Alexa Office On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/og/office/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.office_lights
+
+- id: alexa_office_light_off
+  alias: Alexa Office Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/og/office/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.office_lights
+
+## Studio
+################################################
+- id: alexa_studio_light_on
+  alias: Alexa Studio On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/og/studio/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.studio_lights
+
+- id: alexa_studio_light_off
+  alias: Alexa Studio Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/og/studio/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.studio_lights      
+
+## House
+################################################
+- id: alexa_house_light_on
+  alias: Alexa House Lights On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/house/light
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: group.all_lights
+
+- id: alexa_house_light_off
+  alias: Alexa House Lights Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/house/light
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: group.house
+
+
+################################################
+## Alexa SONOS Commands
+################################################
+
+## Radio Bern 1
+################################################
+- id: alexa_bern1_on
+  alias: Alexa Turn Radio Bern 1 On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/sonos/bern1
+    payload: 'on'
+  action:
+      service: media_player.select_source
+      data:
+        entity_id: media_player.esszimmer
+        source: 'Radio Bern1 97.7 (Pop)'
+      
+## Radio SRF3
+################################################
+- id: alexa_srf3_on
+  alias: Alexa Turn Radio SRF3 On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/sonos/srf3
+    payload: 'on'
+  action:
+      service: media_player.select_source
+      data:
+        entity_id: media_player.esszimmer
+        source: 'SRF 3 99.3 (Pop)'
+
+## SONOS On
+################################################
+- id: alexa_sonos_on
+  alias: Alexa Turn SONOS on
+  hide_entity: true
+  trigger:
+    - platform: mqtt
+      topic: fmc/alexacmd/sonos
+      payload: 'on'
+  action:
+      service: media_player.media_play
+      data:
+        entity_id: media_player.esszimmer
+
+## SONOS Off
+################################################
+- id: alexa_sonos_off
+  alias: Alexa Turn SONOS off
+  hide_entity: true
+  trigger:
+    - platform: mqtt
+      topic: fmc/alexacmd/sonos
+      payload: 'off'
+    - platform: mqtt
+      topic: fmc/alexacmd/sonos/srf3
+      payload: 'off'
+    - platform: mqtt
+      topic: fmc/alexacmd/sonos/bern1
+      payload: 'off'
+  action:
+      service: media_player.media_stop
+      data:
+        entity_id: media_player.esszimmer
+
+################################################
+## Alexa Appliances Commanda
+################################################
+
+## Coffee Machine
+################################################
+- id: alexa_coffeemachine_on
+  alias: Alexa Coffee Machine On
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/coffeemachine
+    payload: 'on'
+  action:
+      service: homeassistant.turn_on
+      entity_id: switch.mystrom_02
+
+- id: alexa_coffeemachine_off
+  alias: Alexa Coffee Machine Off
+  hide_entity: true
+  trigger:
+    platform: mqtt
+    topic: fmc/alexacmd/coffeemachine
+    payload: 'off'
+  action:
+      service: homeassistant.turn_off
+      entity_id: switch.mystrom_02

@@ -1,0 +1,63 @@
+
+################################################################
+## Packages / MQTT Sensors
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'mqttsensors'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## ESP8266 Sensors
+    ################################################
+
+    # sensor.fmcdev03_temp:
+    #   <<: *customize
+    #   friendly_name: "Outside Temperature"
+    #   icon: mdi:temperature-celsius     
+
+    # sensor.fmcdev03_humi:
+    #   <<: *customize
+    #   friendly_name: "Outside Humidity"
+    #   icon: mdi:water-percent
+
+    # sensor.fmcdev03_wifi:
+    #   <<: *customize
+    #   friendly_name: "Homie-01 Wifi Signal"
+    #   icon: mdi:wifi      
+
+
+################################################
+## Temperature / Humidity Sensor Homie-01
+################################################
+
+# sensor:
+#   - platform: mqtt
+#     state_topic: 'fmc/env/homie-01/temperature/temperature'
+#     name: 'fmcdev03_temp'
+#     unit_of_measurement: '°C'
+#   - platform: mqtt
+#     state_topic: 'fmc/env/homie-01/humidity/humidity'
+#     name: 'fmcdev03_humi'
+#     unit_of_measurement: '%'
+#   - platform: mqtt
+#     state_topic: 'fmc/env/homie-01/$stats/signal'
+#     name: 'fmcdev03_wifi'
+#     unit_of_measurement: '%'
+
+

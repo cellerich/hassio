@@ -1,0 +1,105 @@
+
+################################################################
+## Packages / Sonos
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'sonos'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## SONOS
+    ################################################
+
+    media_player.wohnzimmer:
+      <<: *customize
+      friendly_name: "SONOS Wohnzimmer"
+      icon: mdi:speaker     
+
+    media_player.esszimmer:
+      <<: *customize
+      friendly_name: "SONSO Esszimer"
+      icon: mdi:speaker      
+
+
+################################################
+## SONOS devices
+################################################
+media_player:
+  - platform: sonos
+    hosts:
+      - 192.168.1.113
+      - 192.168.1.60
+
+
+##########################################################
+## Sonos Scripts
+##########################################################
+script:
+
+
+  ##########################################################
+  ## Text to speech
+  ##########################################################
+
+  sonos_say:
+    alias: "Sonos TTS say"
+    sequence:
+      - service: media_player.sonos_snapshot
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+      - service: media_player.sonos_unjoin
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+      - service: media_player.volume_set
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+          volume_level: "{{ volume|default(0.6) }}"
+      - service: tts.google_say
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+          message: "{{ message }}"
+      - delay: "{{ delay|default('00:00:00') }}"
+      - wait_template: "{{ is_state(sonos_entity|default('media_player.esszimmer'), 'playing') }}"
+        timeout: '00:00:03'
+      - service: media_player.sonos_restore
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+
+
+  sonos_say_all:
+    alias: "Sonos TTS say all"
+    sequence:
+      - service: media_player.sonos_snapshot
+        data_template:
+          with_group: yes
+      - service: media_player.volume_set
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+          volume_level: "{{ volume|default(0.6) }}"
+      - service: tts.google_say
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+          message: "{{ message }}"
+      - delay: "{{ delay|default('00:00:02') }}"
+      - wait_template: "{{ is_state(sonos_entity|default('media_player.esszimmer'), 'playing') }}"
+        timeout: '00:00:03'
+      - service: media_player.sonos_restore
+        data_template:
+          entity_id: "{{ sonos_entity|default('media_player.esszimmer') }}"
+

@@ -1,0 +1,174 @@
+################################################################
+## Packages / Philips Hue
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'philips_hue'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Hidden Lights
+    ################################################
+
+    light.bloom_diningroom:
+      <<: *customize
+      friendly_name: "Dining Room Bloom"
+      hidden: false
+      icon: mdi:lightbulb
+
+
+    light.bloom_guestroom:
+      <<: *customize
+      friendly_name: "Guest Room Bloom"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.bloom_gallery:
+      <<: *customize
+      friendly_name: "Gallery Bloom"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.bloom_bedroom:
+      <<: *customize
+      friendly_name: "Bedroom Room Bloom"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.strip_guestroom:
+      <<: *customize
+      friendly_name: "Guest Room Strip"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.light_bedroom_fimo:
+      <<: *customize
+      friendly_name: "Bedroom FIMO Light Bulb"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_entrance_middle:
+      <<: *customize
+      friendly_name: "Entrance Spot Middle"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_entrance_mirror:
+      <<: *customize
+      friendly_name: "Entrance Spot Mirror"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_entrance_stair:
+      <<: *customize
+      friendly_name: "Entrance Spot Stairs"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_kitchen_storeroom:
+      <<: *customize
+      friendly_name: "Kitchen Spot Storeroom"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_kitchen_fridge:
+      <<: *customize
+      friendly_name: "Kitchen Spot Fridge"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_kitchen_cabinet:
+      <<: *customize
+      friendly_name: "Kitchen Spot Cabinet"
+      hidden: false
+      icon: mdi:lightbulb
+
+    light.spot_bedroom:
+      <<: *customize
+      friendly_name: "Bedroom Spot"
+      hidden: false
+      icon: mdi:lightbulb
+   
+
+    ################################################
+    ## Visible Lights
+    ################################################
+
+
+    ################################################
+    ## Automation
+    ################################################
+
+    automation.hue_master_bedroom_dimmer_good_morning_good_night:
+      <<: *customize
+      friendly_name: "Hue Master Bedroom Dimmer Good Morning Good Night"
+
+
+################################################
+## Hue Platform
+################################################
+hue:
+
+################################################
+## Light
+################################################
+
+light:
+  - platform: hue
+    host: !secret hue_host
+    allow_hue_groups: false
+    allow_unreachable: true
+
+
+################################################
+## TAP Button Sensor
+################################################
+
+sensor:
+  - platform: hue
+
+
+################################################
+## Automation
+################################################
+
+automation:
+  - id: hue_tap_house_goodnight
+    alias: Shutdown house
+    hide_entity: true
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: sensor.hue_tap_switch_1
+        to: '1_click'
+    action:
+        service: homeassistant.turn_off
+        entity_id: group.house
+
+  - id: hue_tap_goodmorning_guestroom
+    alias: Guestroom Light and Coffe Machine
+    hide_entity: true
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: sensor.hue_tap_switch_1
+        to: '3_click'
+    action:
+        service: homeassistant.turn_on
+        entity_id: group.kitchen_devices
+

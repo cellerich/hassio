@@ -1,0 +1,138 @@
+
+################################################################
+## Packages / XIAOMI
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'xiaomi'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## XIAOMI customizations
+    ################################################
+
+    ################################################
+    ## Gateway
+    ################################################
+
+    light.gateway_light_34ce008d5bc7:
+      <<: *customize
+      friendly_name: "XIAOMI Nightlight"
+
+    sensor.illumination_34ce008d5bc7    :
+      <<: *customize
+      friendly_name: "Illumination"
+
+
+    ################################################
+    ## Door - Window Sensors
+    ################################################
+
+    binary_sensor.door_window_sensor_158d0001ab5c4c:
+      <<: *customize
+      friendly_name: "Office Window"
+
+    binary_sensor.door_window_sensor_158d0001b75800:
+      <<: *customize
+      friendly_name: "Balcony Door"
+
+    binary_sensor.door_window_sensor_158d0001e0396d:
+      <<: *customize
+      friendly_name: "Main Door"
+
+
+    ################################################
+    ## Motion Sensors
+    ################################################
+
+    binary_sensor.motion_sensor_158d000171ba20:
+      <<: *customize
+      friendly_name: "Guestroom Motion"
+
+    binary_sensor.motion_sensor_158d0001a90528:
+      <<: *customize
+      friendly_name: "Studio Motion"
+
+
+    ################################################
+    ## Temperature & Humidity Sensors
+    ################################################
+
+    sensor.humidity_158d0001df5841:
+      <<: *customize
+      friendly_name: "Outside Humidity"
+      icon: mdi:water-percent      
+
+    sensor.temperature_158d0001df5841:
+      <<: *customize
+      friendly_name: "Outside Temperature"
+      icon: mdi:temperature-celsius      
+
+    sensor.humidity_158d0001b1d522:
+      <<: *customize
+      friendly_name: "Bathroom Humidity"
+      icon: mdi:water-percent      
+
+    sensor.temperature_158d0001b1d522:
+      <<: *customize
+      friendly_name: "Bathroom Temperature"
+      icon: mdi:temperature-celsius      
+
+    sensor.humidity_158d0001df57ee:
+      <<: *customize
+      friendly_name: "Bedroom Humidity"
+      icon: mdi:water-percent      
+
+    sensor.temperature_158d0001df57ee:
+      <<: *customize
+      friendly_name: "Bedroom Temperature"
+      icon: mdi:temperature-celsius      
+
+    sensor.humidity_158d0001dfd9a8:
+      <<: *customize
+      friendly_name: "Guestroom Humidity"
+      icon: mdi:water-percent      
+
+    sensor.temperature_158d0001dfd9a8:
+      <<: *customize
+      friendly_name: "Guestroom Temperature"
+      icon: mdi:temperature-celsius      
+
+    sensor.humidity_158d0001dfc9e7:
+      <<: *customize
+      friendly_name: "Livingroom Humidity"
+      icon: mdi:water-percent      
+
+    sensor.temperature_158d0001dfc9e7:
+      <<: *customize
+      friendly_name: "Livingroom Temperature"
+      icon: mdi:temperature-celsius      
+
+
+################################################
+## Xiaomi Gateway
+################################################
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_gateway_key
+
+
+
+

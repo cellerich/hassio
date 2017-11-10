@@ -1,0 +1,42 @@
+################################################################
+## Packages / Fritzbox
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'fritzbox'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Fritzbox Customizations
+    ################################################
+
+    # binary_sensor.tesla_model_s_5yjsa7h20ffp68799_charger_sensor:
+    #   <<: *customize
+    #   friendly_name: "Tesla Charging Sensor"
+    #   icon: mdi:battery     
+
+
+################################################
+## Fritzbox
+################################################
+
+# device_tracker:
+#   - platform: fritz
+
+
+
