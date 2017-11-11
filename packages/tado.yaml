@@ -1,5 +1,5 @@
 ################################################################
-## Packages / HTTP
+## Packages / tado
 ################################################################
 
 ################################################
@@ -14,7 +14,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'http'
+        package: 'tado'
 
       expose: &expose
         <<: *customize
@@ -22,20 +22,12 @@ homeassistant:
         homebridge_hidden: false
 
 ################################################
-## HTTP
+## tado
 ################################################
 
-http:
-  base_url: !secret http_base_url
-  api_password: !secret http_api_password
-  login_attempts_threshold: 3
-  ip_ban_enabled: true
-  use_x_forwarded_for: true
-  # ssl_certificate: /ssl/fullchain.pem
-  # ssl_key: /ssl/privkey.pem
-  cors_allowed_origins:
-    - https://google.com
-    - https://home-assistant.io
-    - https://hub.docker.com
+tado:
+  username: !secret tado_username
+  password: !secret tado_password
+
 
 
