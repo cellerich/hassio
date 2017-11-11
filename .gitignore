@@ -3,6 +3,7 @@
 !panels
 !packages
 !custom_components
+!custom_components\sensor
 !.gitignore
 secrets.yaml
 known_devices.yaml
