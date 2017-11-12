@@ -21,8 +21,14 @@ homeassistant:
         haaska_hidden: false
         homebridge_hidden: false
 
+
     ################################################
     ## Hidden Lights
+    ################################################
+
+
+    ################################################
+    ## Visible Lights
     ################################################
 
     light.bloom_diningroom:
@@ -106,17 +112,16 @@ homeassistant:
    
 
     ################################################
-    ## Visible Lights
-    ################################################
-
-
-    ################################################
     ## Automation
     ################################################
 
-    automation.hue_master_bedroom_dimmer_good_morning_good_night:
+    automation.hue_tap_house_goodnight:
       <<: *customize
-      friendly_name: "Hue Master Bedroom Dimmer Good Morning Good Night"
+      friendly_name: "Switch House to night mode"
+
+    automation.hue_tap_goodmorning_guestroom:
+      <<: *customize
+      friendly_name: "Switch House to good morning mode"
 
 
 ################################################

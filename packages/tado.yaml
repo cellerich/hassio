@@ -21,6 +21,128 @@ homeassistant:
         haaska_hidden: false
         homebridge_hidden: false
 
+    ################################################
+    ## tado bridge
+    ################################################
+
+    sensor.fimocello_home_tado_bridge_status:
+      <<: *customize
+      friendly_name: "Tado Bridge"
+      hidden: true
+      icon: mdi:radiator     
+
+
+    ################################################
+    ## tado devices
+    ################################################
+
+    climate.office:
+      <<: *customize
+      friendly_name: "Office Thermostat"
+      hidden: false
+      icon: mdi:radiator        
+
+    climate.studio:
+      <<: *customize
+      friendly_name: "Studio Thermostat"
+      hidden: false
+      icon: mdi:radiator     
+
+
+    ################################################
+    ## tado sensors office
+    ################################################
+
+    sensor.office_humidity:
+      <<: *customize
+      friendly_name: "Office Humidity"
+      hidden: false
+      icon: mdi:water-percent     
+
+    sensor.office_temperature:
+      <<: *customize
+      friendly_name: "Office Temperature"
+      hidden: false
+      icon: mdi:thermometer     
+
+    sensor.office_heating:
+      <<: *customize
+      friendly_name: "Office Heating"
+      hidden: false
+      icon: mdi:radiator     
+
+    sensor.office_link:
+      <<: *customize
+      friendly_name: "Office tado link"
+      hidden: true
+      icon: mdi:link-variant     
+
+    sensor.office_overlay:
+      <<: *customize
+      friendly_name: "Office Overlay"
+      hidden: true
+      icon: mdi:wrench     
+
+    sensor.office_power:
+      <<: *customize
+      friendly_name: "Office tado power"
+      hidden: true
+      icon: mdi:battery-charging     
+
+    sensor.office_tado_mode:
+      <<: *customize
+      friendly_name: "Office tado presence"
+      hidden: true
+      icon: mdi:map-marker     
+
+
+    ################################################
+    ## tado sensors studio
+    ################################################
+
+    sensor.studio_humidity:
+      <<: *customize
+      friendly_name: "studio Humidity"
+      hidden: false
+      icon: mdi:water-percent     
+
+    sensor.studio_temperature:
+      <<: *customize
+      friendly_name: "studio Temperature"
+      hidden: false
+      icon: mdi:thermometer     
+
+    sensor.studio_heating:
+      <<: *customize
+      friendly_name: "studio Heating"
+      hidden: false
+      icon: mdi:radiator     
+
+    sensor.studio_link:
+      <<: *customize
+      friendly_name: "studio tado link"
+      hidden: true
+      icon: mdi:link-variant     
+
+    sensor.studio_overlay:
+      <<: *customize
+      friendly_name: "studio Overlay"
+      hidden: true
+      icon: mdi:wrench     
+
+    sensor.studio_power:
+      <<: *customize
+      friendly_name: "studio tado power"
+      hidden: true
+      icon: mdi:battery-charging     
+
+    sensor.studio_tado_mode:
+      <<: *customize
+      friendly_name: "studio tado presence"
+      hidden: true
+      icon: mdi:map-marker     
+
+
 ################################################
 ## tado
 ################################################

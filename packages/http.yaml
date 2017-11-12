@@ -37,5 +37,8 @@ http:
     - https://google.com
     - https://home-assistant.io
     - https://hub.docker.com
+    - https://api.telegram.org
+
+    
 
 
