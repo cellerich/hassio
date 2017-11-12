@@ -282,12 +282,3 @@ switch:
 #     entity_id: switch.window_switch_balcony_open
 
 
-################################################
-## Logging during Debug Phase
-################################################
-logger:
-  default: error
-  logs:
-    homeassistant.components.rflink: debug
-    # rflink: debug
-    

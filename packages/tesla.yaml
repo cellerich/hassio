@@ -30,40 +30,40 @@ homeassistant:
       friendly_name: "Tesla Charging Sensor"
       icon: mdi:battery     
 
-    # binary_sensor.tesla_model_s_5yjsa7h20ffp68799_parking_sensor:
-    #   <<: *customize
-    #   friendly_name: "Tesla Parking Sensor"
-    #   icon: mdi:parking     
+    binary_sensor.tesla_model_s_5yjsa7h20ffp68799_parking_sensor:
+      <<: *customize
+      friendly_name: "Tesla Parking Sensor"
+      icon: mdi:parking     
 
-    # climate.tesla_model_s_5yjsa7h20ffp68799_hvac_climate_system:
-    #   <<: *customize
-    #   friendly_name: "Tesla Climate"
-    #   icon: mdi:air-conditioner     
+    climate.tesla_model_s_5yjsa7h20ffp68799_hvac_climate_system:
+      <<: *customize
+      friendly_name: "Tesla Climate"
+      icon: mdi:air-conditioner     
 
-    # device_tracker.tesla_model_s_5yjsa7h20ffp68799_location_tracker:
-    #   <<: *customize
-    #   friendly_name: "Tesla Location"
-    #   icon: mdi:map-marker-radius     
+    device_tracker.tesla_model_s_5yjsa7h20ffp68799_location_tracker:
+      <<: *customize
+      friendly_name: "Tesla Location"
+      icon: mdi:map-marker-radius     
 
-    # lock.tesla_model_s_5yjsa7h20ffp68799_door_lock:
-    #   <<: *customize
-    #   friendly_name: "Tesla Lock"
-    #   icon: mdi:lock     
+    lock.tesla_model_s_5yjsa7h20ffp68799_door_lock:
+      <<: *customize
+      friendly_name: "Tesla Lock"
+      icon: mdi:lock     
 
-    # sensor.tesla_model_s_5yjsa7h20ffp68799_battery_sensor:
-    #   <<: *customize
-    #   friendly_name: "Tesla Battery"
-    #   icon: mdi:battery     
+    sensor.tesla_model_s_5yjsa7h20ffp68799_battery_sensor:
+      <<: *customize
+      friendly_name: "Tesla Battery"
+      icon: mdi:battery     
 
-    # sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_inside:
-    #   <<: *customize
-    #   friendly_name: "Tesla Inside Temperature"
-    #   icon: mdi:thermometer     
+    sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_inside:
+      <<: *customize
+      friendly_name: "Tesla Inside Temperature"
+      icon: mdi:thermometer     
 
-    # sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_outside:
-    #   <<: *customize
-    #   friendly_name: "Tesla Outside Temperature"
-    #   icon: mdi:thermometer     
+    sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_outside:
+      <<: *customize
+      friendly_name: "Tesla Outside Temperature"
+      icon: mdi:thermometer     
       
 
 
