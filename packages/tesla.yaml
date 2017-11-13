@@ -53,6 +53,12 @@ homeassistant:
     sensor.tesla_model_s_5yjsa7h20ffp68799_battery_sensor:
       <<: *customize
       friendly_name: "Tesla Battery"
+      hidden: true
+      icon: mdi:battery     
+
+    sensor.tesla_charge:
+      <<: *customize
+      friendly_name: "Tesla Battery"
       icon: mdi:battery     
 
     sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_inside:
@@ -64,9 +70,6 @@ homeassistant:
       <<: *customize
       friendly_name: "Tesla Outside Temperature"
       icon: mdi:thermometer     
-      
-
-
 
 
 ################################################
@@ -78,4 +81,16 @@ tesla:
   password: !secret tesla_password
   scan_interval: 900
 
+
+
+################################################
+## Translate Battery Sensor to float
+################################################
+sensor:
+  - platform: template
+    sensors:
+      tesla_charge:
+        friendly_name: "Tesla Battery"
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.tesla_model_s_5yjsa7h20ffp68799_battery_sensor')|float }}"
 

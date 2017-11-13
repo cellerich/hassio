@@ -88,9 +88,3 @@ group:
       - sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_inside
       - sensor.tesla_model_s_5yjsa7h20ffp68799_temperature_sensor_outside
 
-
-  house:
-    view: no
-    entities:
-      - group.lightgroup
-      - group.mediagroup

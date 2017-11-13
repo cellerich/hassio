@@ -3,6 +3,7 @@
 !*.py
 !panels
 !packages
+!packages/groups
 !custom_components/
 !custom_components/sensor
 !.gitignore

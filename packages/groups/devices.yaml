@@ -1,0 +1,44 @@
+################################################################
+## Packages / Groups / Devices
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'groups/devices'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+
+    group.kitchen_devices:
+      <<: *customize
+      friendly_name: "Kitchen Devices"
+      icon: mdi:chili-mild
+
+
+################################################
+## Group
+################################################
+
+group:
+
+  kitchen_devices:
+    view: no
+    entities:
+      - switch.mystrom_02

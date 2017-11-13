@@ -1,0 +1,51 @@
+################################################################
+## Packages / Groups / Radiostations
+################################################################
+
+################################################
+## Customize
+################################################
+
+homeassistant:
+  customize:
+    ################################################
+    ## Node Anchors
+    ################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'groups/radiostations'
+
+      expose: &expose
+        <<: *customize
+        haaska_hidden: false
+        homebridge_hidden: false
+
+    ################################################
+    ## Group
+    ################################################
+
+    group.radiostations:
+      <<: *customize
+      friendly_name: "SONOS Radio Stations"
+      # hidden: true
+      icon: mdi:radio
+
+
+################################################
+## Group
+################################################
+
+group:
+  radiostations:
+    view: no
+    entities:
+      - input_boolean.sonos_play_bern1
+      - input_boolean.sonos_play_energy
+      - input_boolean.sonos_play_swisspop
+      - input_boolean.sonos_play_srf3
+      - input_boolean.sonos_play_rockantenne
+
+
+
+
