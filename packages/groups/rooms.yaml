@@ -136,58 +136,13 @@ group:
     entities:
       - group.lightgroup
       - group.mediagroup
-      - dining_room_lights_flag
-      - entrance_lights_flag
-      - kitchen_lights_flag
-      - studio_lights_flag
-      - living_room_lights_flag
-      - bed_room_lights_flag
-      - guest_room_lights_flag
-      - office_lights_flag
+      - input_boolean.dining_room_lights_flag
+      - input_boolean.entrance_lights_flag
+      - input_boolean.kitchen_lights_flag
+      - input_boolean.studio_lights_flag
+      - input_boolean.living_room_lights_flag
+      - input_boolean.bed_room_lights_flag
+      - input_boolean.guest_room_lights_flag
+      - input_boolean.office_lights_flag
       
 
-################################################
-## Group States (for Alexa Automations)
-################################################
-input_boolean:
-
-  dining_room_lights_flag:
-    name: Status of diningroom lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  entrance_lights_flag:
-    name: Status of entrance lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  kitchen_lights_flag:
-    name: Status of kitchen lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  studio_lights_flag:
-    name: Status of studio lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  living_room_lights_flag:
-    name: Status of livingroom lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  bed_room_lights_flag:
-    name: Status of bedroom lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  guest_room_lights_flag:
-    name: Status of guestroom lights
-    initial: off
-    icon: mdi:flag-variant
-  
-  office_lights_flag:
-    name: Status of office lights
-    initial: off
-    icon: mdi:flag-variant
-  

@@ -34,9 +34,9 @@ homeassistant:
       <<: *customize
       friendly_name: "XIAOMI Nightlight"
 
-    sensor.illumination_34ce008d5bc7    :
+    sensor.illumination_34ce008d5bc7:
       <<: *customize
-      friendly_name: "Illumination"
+      friendly_name: "Illumination Guestbathroom"
 
 
     ################################################
@@ -57,6 +57,19 @@ homeassistant:
 
 
     ################################################
+    ## Switches
+    ################################################
+    binary_sensor.switch_158d000124563f:
+      <<: *customize
+      friendly_name: "X Switch 01"
+
+    binary_sensor.switch_158d0001b181fb:
+      <<: *customize
+      friendly_name: "X Switch 02"
+
+
+
+    ################################################
     ## Motion Sensors
     ################################################
 
@@ -70,17 +83,48 @@ homeassistant:
 
 
     ################################################
-    ## Temperature & Humidity Sensors
+    ## Motion and Illumination Sensors
+    ################################################    
+
+
+    binary_sensor.motion_sensor_158d0001ad6659:
+      <<: *customize
+      friendly_name: "Kitchen Motion"
+
+    sensor.illumination_158d0001ad6659:
+      <<: *customize
+      friendly_name: "Illumination Kitchen"
+
+
+
+    ################################################
+    ## Temperature & Humidity & Pressure Sensors
     ################################################
 
-    sensor.humidity_158d0001df5841:
+    sensor.humidity_158d0001d36a29:
       <<: *customize
       friendly_name: "Outside Humidity"
       icon: mdi:water-percent      
 
-    sensor.temperature_158d0001df5841:
+    sensor.temperature_158d0001d36a29:
       <<: *customize
       friendly_name: "Outside Temperature"
+      icon: mdi:temperature-celsius      
+
+    sensor.pressure_158d0001d36a29:
+      <<: *customize
+      friendly_name: "Outside Pressure"
+      icon: mdi:cloud-braces
+
+
+    sensor.humidity_158d0001df5841:
+      <<: *customize
+      friendly_name: "Office Humidity"
+      icon: mdi:water-percent      
+
+    sensor.temperature_158d0001df5841:
+      <<: *customize
+      friendly_name: "Office Temperature"
       icon: mdi:temperature-celsius      
 
     sensor.humidity_158d0001b1d522:
@@ -122,6 +166,136 @@ homeassistant:
       <<: *customize
       friendly_name: "Livingroom Temperature"
       icon: mdi:temperature-celsius      
+
+    ################################################
+    ## Battery Sensors 
+    ################################################      
+
+    sensor.xhumtemp_outside:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xhumtemp_office:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xhumtemp_bathroom:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xhumtemp_bedroom:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xhumtemp_guestroom:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xhumtemp_livingroom:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xmotion_guestroom:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xmotion_studio:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xmotion_kitchen:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xdoorwin_office:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xdoorwin_balcony:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xdoorwin_maindoor:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xswitch_01:
+      <<: *customize
+      icon: mdi:battery-outline
+    sensor.xswitch_02:
+      <<: *customize
+      icon: mdi:battery-outline
+
+
+################################################
+## Xiaomi Battery Template Sensors
+################################################
+      
+sensor:
+  - platform: template
+
+    # Humidity and Temperature Sensors
+    sensors:
+      xhumtemp_outside:
+        friendly_name: "Outside HT Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.sensor.humidity_158d0001d36a29.attributes.battery_level}}"
+
+      xhumtemp_office:
+        friendly_name: "Office HT Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.sensor.humidity_158d0001df5841.attributes.battery_level}}"
+
+      xhumtemp_bathroom:
+        friendly_name: "Bathroom HT Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.sensor.humidity_158d0001b1d522.attributes.battery_level}}"
+
+      xhumtemp_bedroom:
+        friendly_name: "Bedroom HT Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.sensor.humidity_158d0001df57ee.attributes.battery_level}}"
+
+      xhumtemp_guestroom:
+        friendly_name: "Guestroom HT Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.sensor.humidity_158d0001dfd9a8.attributes.battery_level}}"
+
+      xhumtemp_livingroom:
+        friendly_name: "Livingroom HT Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.sensor.humidity_158d0001dfc9e7.attributes.battery_level}}"
+
+    # Motion Sensors
+      xmotion_guestroom:
+        friendly_name: "Guestroom MO Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.motion_sensor_158d000171ba20.attributes.battery_level}}"
+
+      xmotion_studio:
+        friendly_name: "Studio MO Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.motion_sensor_158d0001a90528.attributes.battery_level}}"
+
+      xmotion_kitchen:
+        friendly_name: "Kitchen MO Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.motion_sensor_158d0001ad6659.attributes.battery_level}}"
+
+    # Door/Window Sensors
+      xdoorwin_office:
+        friendly_name: "Office DW Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.door_window_sensor_158d0001ab5c4c.attributes.battery_level}}"
+
+      xdoorwin_balcony:
+        friendly_name: "Balcony DW Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.door_window_sensor_158d0001b75800.attributes.battery_level}}"
+
+      xdoorwin_maindoor:
+        friendly_name: "Maindoor DW Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.door_window_sensor_158d0001e0396d.attributes.battery_level}}"
+
+    # Switches
+      xswitch_01:
+        friendly_name: "X Switch 01 Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.switch_158d000124563f.attributes.battery_level}}"
+
+      xswitch_02:
+        friendly_name: "X Switch 02 Battery"
+        unit_of_measurement: '%'
+        value_template: "{{states.binary_sensor.switch_158d0001b181fb.attributes.battery_level}}"
 
 
 ################################################

@@ -68,6 +68,7 @@ group:
       - group.guest_room_lights
       - group.office_lights
       - group.entrance_lights
+      - group.kitchen_lights
       - group.kitchen_devices
 
   mediagroup:
