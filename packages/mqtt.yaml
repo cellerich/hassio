@@ -27,7 +27,7 @@ homeassistant:
 ## MQTT Broker
 ################################################
 mqtt:
-  broker: cellodisk.fritz.box 
+  broker: cellonas.fritz.box 
   port: 1883
   username: !secret mqtt_username
   password: !secret mqtt_password
