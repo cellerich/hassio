@@ -63,7 +63,7 @@ panel_iframe:
     url: 'http://hassio.fritz.box:1880'
   noderednas:
     title: 'Node-Red NAS'
-    url: 'http://cellonas.fritz.box:1880'
+    url: 'http://cellodisk.fritz.box:1880'
 
 
 
