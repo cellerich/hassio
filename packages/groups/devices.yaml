@@ -31,14 +31,23 @@ homeassistant:
       friendly_name: "Kitchen Devices"
       icon: mdi:chili-mild
 
+    group.office_devices:
+      <<: *customize
+      friendly_name: "Office Devices"
+      icon: mdi:printer
+
 
 ################################################
 ## Group
 ################################################
 
 group:
-
   kitchen_devices:
     view: no
     entities:
+      - switch.mystrom_01
+  office_devices:
+    view: no
+    entities:
       - switch.mystrom_02
+      

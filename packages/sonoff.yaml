@@ -99,15 +99,15 @@ light:
     payload_off: "OFF"
     optimistic: false     
 
-  # SONOFF Switch Bedroom Cello
-  - platform: mqtt
-    name: "sonoff_switch_bedroom_cello"
-    state_topic: "stat/egbdc/LIGHT"
-    command_topic: "cmnd/egbdc/light"
-    qos: 0
-    payload_on: "ON"
-    payload_off: "OFF"
-    optimistic: false
+  # # SONOFF Switch Bedroom Cello
+  # - platform: mqtt
+  #   name: "sonoff_switch_bedroom_cello"
+  #   state_topic: "stat/egbdc/LIGHT"
+  #   command_topic: "cmnd/egbdc/light"
+  #   qos: 0
+  #   payload_on: "ON"
+  #   payload_off: "OFF"
+  #   optimistic: false
 
   # SONOFF Switch Living Room
   - platform: mqtt

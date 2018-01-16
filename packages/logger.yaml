@@ -37,10 +37,10 @@ logger:
     homeassistant.components.rflink: debug
 
     # info
-    homeassistant.bootstrap: info
-    homeassistant.components.websocket_api: info
-    homeassistant.core: info
-    homeassistant.helpers.script: info
+    homeassistant.bootstrap: warn
+    homeassistant.components.websocket_api: warn
+    homeassistant.core: warn
+    homeassistant.helpers.script: warn
 
     # warn
 

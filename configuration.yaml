@@ -58,6 +58,9 @@ panel_iframe:
   portainer:
     title: 'Portainer'
     url: 'http://hassio.fritz.box:9000'
+  portainernas:
+    title: 'Portainer NAS'
+    url: 'http://cellodisk.fritz.box:9000'
   nodered:
     title: 'Node-Red'
     url: 'http://hassio.fritz.box:1880'

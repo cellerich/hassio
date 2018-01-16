@@ -128,24 +128,18 @@ homeassistant:
 ## Hue Platform
 ################################################
 hue:
-
-################################################
-## Light
-################################################
-
-light:
-  - platform: hue
-    host: !secret hue_host
-    allow_hue_groups: false
-    allow_unreachable: true
-
+  bridges:
+    - host: !secret hue_host
+      filename: !secret hue_filename
+      # allow_hue_groups: false
+      # allow_unreachable: true
+  # entities:
+  #   - sensor.hue_tap_switch_1
 
 ################################################
 ## TAP Button Sensor
 ################################################
 
-sensor:
-  - platform: hue
 
 
 ################################################

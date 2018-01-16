@@ -26,15 +26,20 @@ homeassistant:
     ## My Strom
     ################################################
 
+    switch.mystrom_00:
+      <<: *customize
+      friendly_name: "Cello Bedroom Light"
+      icon: mdi:power-plug      
+
     switch.mystrom_01:
       <<: *customize
-      friendly_name: "Studio Plug"
-      icon: mdi:power-plug      
+      friendly_name: "Coffe Machine"
+      icon: mdi:coffee    
 
     switch.mystrom_02:
       <<: *customize
-      friendly_name: "Coffe Machine"
-      icon: mdi:coffee      
+      friendly_name: "Printer"
+      icon: mdi:printer      
 
 
 ################################################
@@ -42,6 +47,9 @@ homeassistant:
 ################################################
 
 switch:
+  - platform: mystrom
+    name: mystrom_00
+    host: !secret mystrom_00_url
   - platform: mystrom
     name: mystrom_01
     host: !secret mystrom_01_url

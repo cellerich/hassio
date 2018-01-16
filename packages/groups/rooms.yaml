@@ -114,10 +114,10 @@ group:
   bed_room_lights:
     view: no
     entities:
-      - light.sonoff_switch_bedroom_cello
       - light.light_bedroom_fimo
       - light.bloom_bedroom
       - light.spot_bedroom
+      - switch.mystrom_00
 
   guest_room_lights:
     view: no
