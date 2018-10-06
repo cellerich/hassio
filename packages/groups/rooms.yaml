@@ -110,6 +110,7 @@ group:
     entities:
       - switch.light_livingroom_front
       - switch.light_livingroom_back
+      - light.strip_dining_room
 
   bed_room_lights:
     view: no

@@ -62,6 +62,12 @@ homeassistant:
       hidden: false
       icon: mdi:lightbulb
 
+    light.strip_dining_room:
+      <<: *customize
+      friendly_name: "Living Room Strip"
+      hidden: false
+      icon: mdi:lightbulb
+
     light.light_bedroom_fimo:
       <<: *customize
       friendly_name: "Bedroom FIMO Light Bulb"
